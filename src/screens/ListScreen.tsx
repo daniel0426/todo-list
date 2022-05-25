@@ -32,7 +32,7 @@ const ListScreen: React.FC<Props> = () => {
     }
   };
 
-  const handleCompleteChange =
+  const handleTaskCompleteChange =
     (handleTask: Task) => (e: ChangeEvent<HTMLInputElement>) => {
       setTasks((tasks) =>
         tasks.map((task) => {
@@ -47,6 +47,9 @@ const ListScreen: React.FC<Props> = () => {
     setTasks((tasks) => tasks.filter((task) => !task.isComplete));
   };
 
+  const handleTaskDeleteClick = (handledTask: Task) => () => {
+    setTasks((tasks) => tasks.filter((task) => task.id !== handledTask.id));
+  };
   console.log(tasks);
 
   return (
@@ -57,9 +60,10 @@ const ListScreen: React.FC<Props> = () => {
             <input
               type="checkbox"
               checked={task.isComplete}
-              onChange={handleCompleteChange(task)}
+              onChange={handleTaskCompleteChange(task)}
             />
             {task.label}
+            <button onClick={handleTaskDeleteClick(task)}>Delete</button>
           </div>
         ))}
       </div>
