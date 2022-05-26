@@ -1,22 +1,11 @@
 import { nanoid } from 'nanoid';
-import { listenerCount } from 'process';
-import React, {
-  ChangeEvent,
-  ChangeEventHandler,
-  KeyboardEvent,
-  useState,
-} from 'react';
+import React, { ChangeEvent, KeyboardEvent, useState } from 'react';
+import { Task, TasksProps } from '../types';
 
-type Props = {};
+type Props=  TasksProps;
 
-type Task = {
-  id: string;
-  label: string;
-  isComplete: boolean;
-};
 
-const ListScreen: React.FC<Props> = () => {
-  const [tasks, setTasks] = useState<Task[]>([]);
+const ListScreen: React.FC<Props> = ({ tasks, setTasks }) => {
   const [newTaskLabel, setNewTaskLabel] = useState('');
 
   const handleNewTaskLabelChange = (e: ChangeEvent<HTMLInputElement>) =>
@@ -50,7 +39,6 @@ const ListScreen: React.FC<Props> = () => {
   const handleTaskDeleteClick = (handledTask: Task) => () => {
     setTasks((tasks) => tasks.filter((task) => task.id !== handledTask.id));
   };
-  console.log(tasks);
 
   return (
     <div>
