@@ -7,7 +7,19 @@ import { Task } from './types';
 
 function App() {
   const [tasks, setTasks] = useState<Task[]>([]);
-  const tasksProps = { tasks, setTasks };
+
+
+  const updateTaskCompletion = (taskId: string, isComplete: boolean) => {
+    setTasks((tasks) =>
+      tasks.map((task) => {
+        if (task.id === taskId) return { ...task, isComplete };
+        return task;
+      })
+    );
+  };
+
+  const tasksApi = { tasks, setTasks, updateTaskCompletion };
+
   return (
     <BrowserRouter>
       <nav>
@@ -15,8 +27,8 @@ function App() {
         <NavLink to="/focus">Focus View</NavLink>
       </nav>
       <Routes>
-        <Route path="/" element={<ListScreen {...tasksProps} />}></Route>
-        <Route path="/focus" element={<FocusScreen {...tasksProps} />}></Route>
+        <Route path="/" element={<ListScreen {...tasksApi} />}></Route>
+        <Route path="/focus" element={<FocusScreen {...tasksApi} />}></Route>
       </Routes>
     </BrowserRouter>
   );
