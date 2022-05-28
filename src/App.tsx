@@ -6,9 +6,10 @@ import FocusScreen from './screens/FocusScreen';
 import { Task } from './types';
 import { shuffle } from 'lodash';
 import { nanoid } from 'nanoid';
+import useLocalStorage from './hooks/use-local-storage';
 
 function App() {
-  const [tasks, setTasks] = useState<Task[]>([]);
+  const [tasks, setTasks] = useLocalStorage<Task[]>('tasks', []);
   const [focusedTaskId, setFocusedTaskId] = useState<string | undefined>(
     undefined
   );
