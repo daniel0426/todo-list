@@ -13,16 +13,12 @@ const Layout = styled.div`
   flex-direction: column;
   align-items: center;
   padding: 35px;
+  min-height: 80vh;
 `;
 
 const Nav = styled.nav`
   display: flex;
   margin-bottom: 45px;
-`;
-
-const Wrapper = styled.div`
-  width: 100%;
-  max-width: 460px;
 `;
 
 const TabButton = styled(NavLink)`
@@ -64,12 +60,10 @@ function App() {
               <TabButton to="/">List View</TabButton>
               <TabButton to="/focus">Focus View</TabButton>
             </Nav>
-            <Wrapper>
-              <Routes>
-                <Route path="/" element={<ListScreen />}></Route>
-                <Route path="/focus" element={<FocusScreen />}></Route>
-              </Routes>
-            </Wrapper>
+            <Routes>
+              <Route path="/" element={<ListScreen />}></Route>
+              <Route path="/focus" element={<FocusScreen />}></Route>
+            </Routes>
           </Layout>
         </TaskContext.Provider>
       </BrowserRouter>
